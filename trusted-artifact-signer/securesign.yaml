@@ -2,7 +2,6 @@ apiVersion: rhtas.redhat.com/v1alpha1
 kind: Securesign
 metadata:
   name: securesign
-  namespace: openshift-operators
   finalizers:
     - tas.rhtas.redhat.com
   labels:
@@ -10,7 +9,6 @@ metadata:
     app.kubernetes.io/name: securesign
     app.kubernetes.io/part-of: trusted-artifact-signer
 spec:
-  analytics: true
   ctlog: {}
   fulcio:
     certificate:
