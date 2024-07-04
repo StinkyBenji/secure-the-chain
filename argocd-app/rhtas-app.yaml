@@ -5,16 +5,20 @@ metadata:
   namespace: openshift-gitops
 spec:
   destination:
-    namespace: openshift-gitops
+    namespace: trusted-artifact-signer
     server: https://kubernetes.default.svc
   project: cluster-app
-  source:
-    repoURL: git@github.com:StinkyBenji/secure-the-chain.git
-    path: trusted-artifact-signer/
+  sources:
+  - repoURL: git@github.com:StinkyBenji/secure-the-chain.git
+    path: trusted-artifact-signer/operator
+  - repoURL: git@github.com:StinkyBenji/secure-the-chain.git
+    path: trusted-artifact-signer/instance
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
+      - CreateNamespace=true
       - ServerSideApply=true
       - SkipDryRunOnMissingResource=true
+      
