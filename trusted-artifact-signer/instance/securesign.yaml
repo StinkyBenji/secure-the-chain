@@ -17,7 +17,7 @@ spec:
       organizationName: Red Hat
     config:
       OIDCIssuers:
-        - ClientID: trusted-artifact-signer
+        - ClientID: sigstore
           Issuer: 'https://oidc-discovery.apps.ocp4.whatever.out-of-my-head.de'
           IssuerURL: 'https://oidc-discovery.apps.ocp4.whatever.out-of-my-head.de'
           Type: spiffe
