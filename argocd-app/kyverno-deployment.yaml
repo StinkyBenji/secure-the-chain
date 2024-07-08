@@ -10,16 +10,15 @@ spec:
     namespace: kyverno
     server: https://kubernetes.default.svc
   project: cluster-app
-  source:
-    chart: kyverno
+  sources:
+  - chart: kyverno
     repoURL: https://kyverno.github.io/kyverno
     targetRevision: 3.1.4
     helm:
-      values: |
-        webhooksCleanup:
-          enabled: false
-        policyReportsCleanup:
-          enabled: false
+      valueFiles:
+        - $val/kyverno/values.yaml
+  - repoURL: git@github.com:StinkyBenji/secure-the-chain.git
+    ref: val  
   ignoreDifferences:
   - group: rbac.authorization.k8s.io
     kind: ClusterRole

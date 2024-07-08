@@ -1,0 +1,17 @@
+webhooksCleanup:
+  enabled: false
+policyReportsCleanup:
+  enabled: false
+admissionController:
+  container:
+    extraEnvVars:
+    - name: VAULT_ADDR
+      valueFrom:
+        secretKeyRef:
+          key: VAULT_ADDR
+          name: kyverno-vault-integration
+    - name: VAULT_TOKEN
+      valueFrom:
+        secretKeyRef:
+          key: VAULT_TOKEN
+          name: kyverno-vault-integration
