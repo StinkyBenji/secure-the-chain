@@ -12,13 +12,14 @@ spec:
   project: cluster-app
   sources:
   - chart: kyverno
-    repoURL: https://kyverno.github.io/kyverno
+    repoURL: "https://kyverno.github.io/kyverno"
     targetRevision: 3.1.4
     helm:
       valueFiles:
         - $val/kyverno/values.yaml
-  - repoURL: git@github.com:StinkyBenji/secure-the-chain.git
-    ref: val  
+  - repoURL: "git@github.com:StinkyBenji/secure-the-chain.git"
+    targetRevision: main
+    ref: val
   ignoreDifferences:
   - group: rbac.authorization.k8s.io
     kind: ClusterRole
