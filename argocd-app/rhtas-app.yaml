@@ -9,9 +9,9 @@ spec:
     server: https://kubernetes.default.svc
   project: cluster-app
   sources:
-  - repoURL: git@github.com:StinkyBenji/secure-the-chain.git
+  - repoURL: https://github.com/StinkyBenji/secure-the-chain.git
     path: trusted-artifact-signer/operator
-  - repoURL: git@github.com:StinkyBenji/secure-the-chain.git
+  - repoURL: https://github.com/StinkyBenji/secure-the-chain.git
     path: trusted-artifact-signer/instance
   syncPolicy:
     automated:
