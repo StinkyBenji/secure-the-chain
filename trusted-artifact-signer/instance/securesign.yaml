@@ -10,22 +10,6 @@ metadata:
     app.kubernetes.io/part-of: trusted-artifact-signer
 spec:
   ctlog: {}
-  fulcio:
-    certificate:
-      commonName: apps.ocp4.whatever.out-of-my-head.de
-      organizationEmail: rzh@redhat.com
-      organizationName: Red Hat
-    config:
-      OIDCIssuers:
-        - ClientID: sigstore
-          Issuer: 'https://oidc-discovery.apps.ocp4.whatever.out-of-my-head.de'
-          IssuerURL: 'https://oidc-discovery.apps.ocp4.whatever.out-of-my-head.de'
-          Type: spiffe
-          SPIFFETrustDomain: apps.ocp4.whatever.out-of-my-head.de
-    externalAccess:
-      enabled: true
-    monitoring:
-      enabled: false
   rekor:
     backFillRedis:
       enabled: true
