@@ -12,7 +12,7 @@ spec:
   - repoURL: https://github.com/StinkyBenji/secure-the-chain.git
     path: trusted-artifact-signer/operator
   - repoURL: https://github.com/StinkyBenji/secure-the-chain.git
-    path: trusted-artifact-signer/instance
+    path: trusted-artifact-signer/instance/base
   syncPolicy:
     automated:
       prune: true
