@@ -79,7 +79,7 @@ spec:
       value: "cosign initialize --mirror=$TUF_URL --root=$TUF_URL/root.json\ncosign
         attest $(params.IMAGE)@$(tasks.build-image.results.IMAGE_DIGEST) -y --fulcio-url=$(params.fulcio-url)
         --rekor-url=$(params.rekor-url) --oidc-issuer=$(params.oidc-issuer-url) --predicate
-        /attestation_tmp/attestation.sbom --type spdxjson --attachment-tag-prefix
+        /attestation_tmp/attestation.sbom --type spdxjson --replace --attachment-tag-prefix
         sbom-    \n"
     - name: TUF_URL
       value: $(params.tuf-url)
