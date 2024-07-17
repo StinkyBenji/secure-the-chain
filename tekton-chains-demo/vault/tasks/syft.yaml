@@ -1,0 +1,76 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  annotations:
+    tekton.dev/categories: Security
+    tekton.dev/displayName: syft
+    tekton.dev/pipelines.minVersion: 0.12.1
+    tekton.dev/platforms: linux/amd64,linux/arm64
+    tekton.dev/tags: CLI, syft
+  name: syft
+spec:
+  description: CLI tool and library for generating a Software Bill of Materials from container images and filesystem
+  params:
+    - description: The Arguments to be passed to Syft command.
+      name: SYFT_ARGS
+      type: array
+    - description: The Arguments to be passed to cosign command.
+      name: COSIGN_SCRIPT
+      type: string
+    - default: docker.io/anchore/syft:latest
+      description: Syft image to be used
+      name: SYFT_IMAGE
+      type: string
+    - default: VAULT_ADDR
+      description: The secret key for hashicorp vault address
+      name: vault-addr-key
+      type: string
+    - default: VAULT_TOKEN
+      description: The secret key for hashicorp vault token
+      name: vault-token-key
+      type: string
+    - default: vault-secret
+      description: Cosing image to be used
+      name: vault-secret-name
+      type: string
+    - default: bitnami/cosign:latest
+      description: Cosing image to be used
+      name: COSIGN_IMAGE
+      type: string
+  steps:
+    - args:
+        - $(params.SYFT_ARGS)
+      image: $(params.SYFT_IMAGE)
+      name: syft
+      volumeMounts:
+        - mountPath: /attestation_tmp
+          name: tmp
+      workingDir: $(workspaces.source-dir.path)
+    - args:
+        - -c
+        - $(params.COSIGN_SCRIPT)
+      command:
+        - /bin/bash
+      env:
+        - name: VAULT_ADDR
+          valueFrom:
+            secretKeyRef:
+              key: $(params.vault-addr-key)
+              name: $(params.vault-secret-name)
+        - name: VAULT_TOKEN
+          valueFrom:
+            secretKeyRef:
+              key: $(params.vault-token-key)
+              name: $(params.vault-secret-name)
+        - name: COSIGN_EXPERIMENTAL
+          value: "1"
+      image: $(params.COSIGN_IMAGE)
+      name: cosign
+      volumeMounts:
+        - mountPath: /attestation_tmp
+          name: tmp
+  volumes:
+    - name: tmp
+  workspaces:
+    - name: source-dir
+      optional: true

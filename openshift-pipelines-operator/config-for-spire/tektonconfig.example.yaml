@@ -1,0 +1,51 @@
+apiVersion: operator.tekton.dev/v1alpha1
+kind: TektonConfig
+metadata:
+  name: config
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
+spec:
+  pipeline:
+    enable-cel-in-whenexpression: true
+  chain:
+    artifacts.oci.storage: "oci"
+    artifacts.pipelinerun.format: "in-toto"
+    artifacts.pipelinerun.storage: "oci"
+    artifacts.taskrun.format: "in-toto"
+    artifacts.taskrun.signer: x509
+    artifacts.pipelinerun.signer: x509
+    signers.x509.fulcio.address: ""
+    signers.x509.fulcio.enabled: true
+    signers.x509.fulcio.issuer: ""
+    signers.x509.fulcio.provider: spiffe
+    signers.x509.tuf.mirror.url: ""
+    transparency.enabled: "true"
+    transparency.url: ""
+    options:
+      disabled: false
+      deployments:
+        tekton-chains-controller:
+          spec:
+            template:
+              spec:
+                containers:
+                  - name: tekton-chains-controller
+                    env:
+                      - name: SPIFFE_ENDPOINT_SOCKET
+                        value: /spiffe-workload-api/spire-agent.sock
+                      - name: TUF_ROOT
+                        value: /tuf
+                    resources: {}
+                    volumeMounts:
+                      - mountPath: /spiffe-workload-api
+                        name: spiffe-workload-api
+                      - mountPath: /tuf
+                        name: tuf
+                volumes:
+                  - emptyDir: {}
+                    name: tuf
+                  - csi:
+                      driver: csi.spiffe.io
+                      readOnly: true
+                    name: spiffe-workload-api
+  targetNamespace: openshift-pipelines
