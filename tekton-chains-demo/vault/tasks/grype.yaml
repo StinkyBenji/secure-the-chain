@@ -3,24 +3,23 @@ kind: Task
 metadata:
   annotations:
     tekton.dev/categories: Security
-    tekton.dev/displayName: syft
+    tekton.dev/displayName: grype
     tekton.dev/pipelines.minVersion: 0.12.1
     tekton.dev/platforms: linux/amd64,linux/arm64
-    tekton.dev/tags: CLI, syft
-  name: syft
+    tekton.dev/tags: CLI, grype
+  name: grype
 spec:
-  description: CLI tool and library for generating a Software Bill of Materials from container images and filesystem
+  description: Task and library for scanning a SBOM and and creating an attestation
   params:
     - description: The Arguments to be passed to Syft command.
-      name: SYFT_ARGS
+      name: GRYPE_ARGS
       type: array
-      default: []
     - description: The Arguments to be passed to cosign command.
       name: COSIGN_SCRIPT
       type: string
-    - default: docker.io/anchore/syft:latest
-      description: Syft image to be used
-      name: SYFT_IMAGE
+    - default: docker.io/anchore/grype:v0.56.0
+      description: Grype image to be used
+      name: GRYPE_IMAGE
       type: string
     - default: bitnami/cosign:latest
       description: Cosing image to be used
@@ -40,9 +39,12 @@ spec:
       type: string
   steps:
     - args:
-        - $(params.SYFT_ARGS)
-      image: $(params.SYFT_IMAGE)
-      name: syft
+        - $(params.GRYPE_ARGS)
+      env:
+        - name: GRYPE_DB_CACHE_DIR
+          value: /tmp/.cache
+      image: $(params.GRYPE_IMAGE)
+      name: grype
       volumeMounts:
         - mountPath: /attestation_tmp
           name: tmp
@@ -52,6 +54,8 @@ spec:
         - $(params.COSIGN_SCRIPT)
       command:
         - /bin/bash
+      image: $(params.COSIGN_IMAGE)
+      name: cosign
       env:
         - name: VAULT_ADDR
           valueFrom:
@@ -63,8 +67,6 @@ spec:
             secretKeyRef:
               key: $(params.vault-token-key)
               name: $(params.vault-secret-name)
-      image: $(params.COSIGN_IMAGE)
-      name: cosign
       volumeMounts:
         - mountPath: /attestation_tmp
           name: tmp
