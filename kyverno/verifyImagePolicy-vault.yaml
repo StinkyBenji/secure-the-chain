@@ -1,0 +1,28 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: verify-image-signed-vault
+spec:
+  validationFailureAction: Enforce
+  background: false
+  webhookTimeoutSeconds: 30
+  failurePolicy: Fail
+  rules:
+  - name: verify-image-signature
+    match:
+      resources:
+        kinds:
+        - Pod
+        namespaces:
+        - image-build
+    verifyImages:
+    - imageReferences:
+      - "quay.io/stbenji/*"
+      attestors:
+      - count: 1
+        entries:
+        - keys:
+            rekor:
+              ignoreTlog: true
+              url: https://rekor-server-trusted-artifact-signer.apps.ocp4.whatever.out-of-my-head.de/
+            kms: hashivault://cosign

@@ -1,0 +1,25 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: check-source-image-policy
+spec:
+  validationFailureAction: Enforce
+  background: false
+  webhookTimeoutSeconds: 30
+  failurePolicy: Fail
+  rules:
+  - name: container-registry-required
+    match:
+      resources:
+        kinds:
+        - Pod
+        namespaces:
+        - image-build
+    validate:
+      message: "Image must be from the following container registry"
+      pattern:
+        spec:
+          containers:
+          - image: "quay.io/stbenji/*"
+          - image: "image-registry.openshift-image-registry.svc:5000/*"
+          - image: "registry.access.redhat.com/*"
