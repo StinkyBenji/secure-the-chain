@@ -41,7 +41,21 @@ Therefore, we need to create a secret that contains `VAULT_ADDR` AND `VAULT_TOKE
 
 Once everything is setup, we can create the pipelinerun 
 
+![Pipeline](./assets/pipelines.png)
 
+Quay is used for the image registry
+
+![figure](./assets/registry.png) 
+
+From the picture, we can see that the image is signed and the corresponding SBOM and vulnerability report are attached to it as well.
+
+### Verification
+
+We can verify the attestation by running `cosign verify-attestation --insecure-ignore-tlog=true --type slsaprovenance --key hashivault://cosign <IMAGE>:<TAG>`
+
+Alternatively, we can use `cosign tree <IMAGE>:<TAG>`, it will display supply chain security related artifacts for an image such as signatures, SBOMs and attestations.
+
+![cosign-tree](.assets/cosign-tree.png)
 
 ## More to read
 - [Transit secret engine](https://developer.hashicorp.com/vault/tutorials/encryption-as-a-service/eaas-transit)
