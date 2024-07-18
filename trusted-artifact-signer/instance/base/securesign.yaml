@@ -2,8 +2,6 @@ apiVersion: rhtas.redhat.com/v1alpha1
 kind: Securesign
 metadata:
   name: securesign
-  finalizers:
-    - tas.rhtas.redhat.com
   labels:
     app.kubernetes.io/instance: securesign
     app.kubernetes.io/name: securesign
