@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: pipeline
+  name: pipeline-sa
   namespace: security-demo
 imagePullSecrets:
   - name: pipelines-pull-secret
