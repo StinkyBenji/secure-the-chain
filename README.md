@@ -55,7 +55,7 @@ We can verify the attestation by running `cosign verify-attestation --insecure-i
 
 Alternatively, we can use `cosign tree <IMAGE>:<TAG>`, it will display supply chain security related artifacts for an image such as signatures, SBOMs and attestations.
 
-![cosign-tree](.assets/cosign-tree.png)
+![cosign-tree](./assets/cosign-tree.png)
 
 ## More to read
 - [Transit secret engine](https://developer.hashicorp.com/vault/tutorials/encryption-as-a-service/eaas-transit)
