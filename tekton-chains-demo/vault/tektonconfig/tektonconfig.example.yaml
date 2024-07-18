@@ -9,16 +9,14 @@ spec:
     enable-cel-in-whenexpression: true
   chain:
     artifacts.oci.storage: "oci"
-    artifacts.pipelinerun.format: "slsa/v1"
     artifacts.pipelinerun.storage: "oci"
-    artifacts.taskrun.format: "slsa/v1"
     artifacts.taskrun.signer: kms
     artifacts.pipelinerun.signer: kms
     artifacts.oci.signer: kms
-    transparency.enabled: "true"
+    transparency.enabled: "false"
     signers.kms.kmsref: hashivault://cosign
     signers.kms.auth.address: <vault-addr>
-    signers.kms.auth.token: <vault-token>
+    signers.kms.auth.token: <cosign-token>
     options:
       disabled: false
   targetNamespace: openshift-pipelines
