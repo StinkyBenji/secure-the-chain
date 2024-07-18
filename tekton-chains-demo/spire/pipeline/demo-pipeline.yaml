@@ -62,11 +62,12 @@ spec:
     runAfter:
     - fetch-repository
     taskRef:
-      kind: Task
-      name: buildah-custom
+      kind: ClusterTask
+      name: buildah
     workspaces:
     - name: source
       workspace: shared-workspace
+      
   - name: create-sbom
     params:
     - name: SYFT_ARGS
@@ -89,6 +90,7 @@ spec:
     taskRef:
       kind: Task
       name: syft
+
   - name: create-vulnerability-attestation
     params:
     - name: GRYPE_ARGS

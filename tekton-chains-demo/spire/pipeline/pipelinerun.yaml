@@ -14,17 +14,17 @@ spec:
     - name: IMAGE_TAG
       value: "0.1.0"
     - name: fulcio-url
-      value: https://fulcio-server-trusted-artifact-signer.apps.ocp4.whatever.out-of-my-head.de
+      value: 
     - name: rekor-url
-      value:  https://rekor-server-trusted-artifact-signer.apps.ocp4.whatever.out-of-my-head.de
+      value:  
     - name: oidc-issuer-url
-      value: https://oidc-discovery.apps.ocp4.whatever.out-of-my-head.de
+      value: 
     - name: tuf-url
-      value: https://tuf-trusted-artifact-signer.apps.ocp4.whatever.out-of-my-head.de
+      value: 
   pipelineRef:
     name: image-build
   taskRunTemplate:
-    serviceAccountName: pipelines-sa
+    serviceAccountName: pipeline
   timeouts:
     pipeline: 1h0m0s
   workspaces:

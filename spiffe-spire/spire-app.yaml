@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+    argocd.argoproj.io/sync-options: 'SkipDryRunOnMissingResource=true,ServerSideApply=true'
+  name: spire
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: spire-server
+    server: 'https://kubernetes.default.svc'
+  project: cluster-app
+  sources:
+    - helm:
+        valueFiles:
+          - $val/spiffe-spire/values.yaml
+      path: charts/spire
+      repoURL: 'https://github.com/spiffe/helm-charts-hardened'
+      targetRevision: spire-0.20.0
+    - ref: val
+      targetRevision: feat/spiffe
+      repoURL: 'https://github.com/StinkyBenji/secure-the-chain'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 10m
+      limit: -1
+    syncOptions:
+      - CreateNamespace=true

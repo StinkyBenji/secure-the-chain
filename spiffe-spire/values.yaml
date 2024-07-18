@@ -1,0 +1,50 @@
+global:
+  k8s:
+    clusterDomain: "CLUSTER_DOMAIN"
+  openshift: true
+  installAndUpgradeHooks:
+    enabled: false
+  deleteHooks:
+    enabled: false
+  spire:
+    clusterName: "CLUSTER_NAME"
+    trustDomain: "CLUSTER_DOMAIN"
+    namespaces:
+      system:
+        create: true
+  persistence:
+    storageClass: managed-nfs-storage
+  ca_subject:
+    country: DE
+    organization: Red Hat
+    common_name: "COMMON_NAME"
+
+spire-server:
+  tornjak:
+    enabled: true
+    ingress:
+      enabled: true
+
+
+tornjak-frontend:
+  enabled: true
+  ingress:
+    enabled: true
+  service:
+    type: ClusterIP
+    port: 3000
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      cpu: 100m
+      memory: 512Mi
+
+spiffe-oidc-discovery-provider:
+  enabled: true
+  ingress:
+    enabled: true
+  tls:
+    spire:
+      enabled: false

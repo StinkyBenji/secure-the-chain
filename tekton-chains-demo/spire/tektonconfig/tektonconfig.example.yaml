@@ -49,3 +49,4 @@ spec:
                       readOnly: true
                     name: spiffe-workload-api
   targetNamespace: openshift-pipelines
+  
