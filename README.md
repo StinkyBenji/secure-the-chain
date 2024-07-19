@@ -57,7 +57,13 @@ Alternatively, we can use `cosign tree <IMAGE>:<TAG>`, it will display supply ch
 
 ![cosign-tree](./assets/cosign-tree.png)
 
+
+!! Note: Cosign supports RSA, ECDSA, and ED25519 keys. For RSA, Cosign only supports RSA PKCS#1.5 padded keys.
+
 ## More to read
 - [Transit secret engine](https://developer.hashicorp.com/vault/tutorials/encryption-as-a-service/eaas-transit)
-- [transit signing](https://gist.github.com/stenio123/0ae467df32364efad0ca01d3b9c3e1c5)
-- https://tekton.dev/docs/chains/hashicorp-integration-tutorial/
+- [Transit signing](https://gist.github.com/stenio123/0ae467df32364efad0ca01d3b9c3e1c5)
+- [Tekton Hashicorp Vault integration Tutorial](https://tekton.dev/docs/chains/hashicorp-integration-tutorial/)
+- [Transit Key Type](https://developer.hashicorp.com/vault/docs/secrets/transit#key-types)
+
+
