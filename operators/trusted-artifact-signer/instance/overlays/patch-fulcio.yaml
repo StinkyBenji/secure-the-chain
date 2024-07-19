@@ -2,13 +2,12 @@
   path: /spec/fulcio
   value:
     certificate:
-      commonName: apps.ocp4.whatever.out-of-my-head.de
-      organizationEmail: rzh@redhat.com
-      organizationName: Red Hat
+      commonName: 
+      organizationEmail: jdoe@gmail.com
+      organizationName: 
     config:
       OIDCIssuers:
-        - ClientID: sigstore
-          Issuer: 'https://oidc-discovery.apps.ocp4.whatever.out-of-my-head.de'
-          IssuerURL: 'https://oidc-discovery.apps.ocp4.whatever.out-of-my-head.de'
-          Type: spiffe
-          SPIFFETrustDomain: apps.ocp4.whatever.out-of-my-head.de
+        - ClientID: 
+          Issuer: 
+          IssuerURL: 
+          Type: 
