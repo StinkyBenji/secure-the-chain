@@ -6,7 +6,8 @@ export VAULT_TOKEN=<YOUR VAULT TOKEN>
 echo "enable transit secret engine for cosign ----- "
 
 vault secrets enable transit
-vault write -f transit/keys/cosign type="rsa-2048"
+
+vault write -f transit/keys/cosign type="ecdsa-p256"
 
 vault policy write cosign ./cosign.hcl
 

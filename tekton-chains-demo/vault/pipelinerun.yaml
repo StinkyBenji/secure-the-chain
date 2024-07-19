@@ -11,7 +11,7 @@ spec:
     - name: IMAGE
       value: quay.io/stbenji/pipelines-vote-api-vault
     - name: IMAGE_TAG
-      value: "0.1.0"
+      value: "0.0.0"
     - name: vault-key
       value: hashivault://cosign
   pipelineRef:
