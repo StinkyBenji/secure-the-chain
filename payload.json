@@ -1,0 +1,386 @@
+{
+  "_type": "https://in-toto.io/Statement/v0.1",
+  "predicateType": "https://slsa.dev/provenance/v0.2",
+  "subject": [
+    {
+      "name": "quay.io/stbenji/pipelines-vote-api-vault",
+      "digest": {
+        "sha256": "4440300832a878f3d3db0542e750067b6611b42ebeb401a1da4a28bdcf98bcda"
+      }
+    }
+  ],
+  "predicate": {
+    "builder": {
+      "id": "https://tekton.dev/chains/v2"
+    },
+    "buildType": "tekton.dev/v1beta1/PipelineRun",
+    "invocation": {
+      "configSource": {},
+      "parameters": {
+        "IMAGE": "quay.io/stbenji/pipelines-vote-api-vault",
+        "IMAGE_TAG": "0.0.0",
+        "deployment-name": "pipelines-vote-api",
+        "git-revision": "pipelines-1.8",
+        "git-url": "https://github.com/openshift/pipelines-vote-api.git",
+        "vault-key": "hashivault://cosign"
+      },
+      "environment": {
+        "labels": {
+          "tekton.dev/pipeline": "image-build"
+        }
+      }
+    },
+    "buildConfig": {
+      "tasks": [
+        {
+          "name": "fetch-repository",
+          "ref": {
+            "name": "git-clone",
+            "kind": "ClusterTask"
+          },
+          "startedOn": "2024-07-19T11:25:13Z",
+          "finishedOn": "2024-07-19T11:25:21Z",
+          "status": "Succeeded",
+          "steps": [
+            {
+              "entryPoint": "#!/usr/bin/env sh\nset -eu\n\nif [ \"${PARAM_VERBOSE}\" = \"true\" ] ; then\n  set -x\nfi\n\nif [ \"${WORKSPACE_BASIC_AUTH_DIRECTORY_BOUND}\" = \"true\" ] ; then\n  cp \"${WORKSPACE_BASIC_AUTH_DIRECTORY_PATH}/.git-credentials\" \"${PARAM_USER_HOME}/.git-credentials\"\n  cp \"${WORKSPACE_BASIC_AUTH_DIRECTORY_PATH}/.gitconfig\" \"${PARAM_USER_HOME}/.gitconfig\"\n  chmod 400 \"${PARAM_USER_HOME}/.git-credentials\"\n  chmod 400 \"${PARAM_USER_HOME}/.gitconfig\"\nfi\n\nif [ \"${WORKSPACE_SSH_DIRECTORY_BOUND}\" = \"true\" ] ; then\n  cp -R \"${WORKSPACE_SSH_DIRECTORY_PATH}\" \"${PARAM_USER_HOME}\"/.ssh\n  chmod 700 \"${PARAM_USER_HOME}\"/.ssh\n  chmod -R 400 \"${PARAM_USER_HOME}\"/.ssh/*\nfi\n\nif [ \"${WORKSPACE_SSL_CA_DIRECTORY_BOUND}\" = \"true\" ] ; then\n   export GIT_SSL_CAPATH=\"${WORKSPACE_SSL_CA_DIRECTORY_PATH}\"\n   if [ \"${PARAM_CRT_FILENAME}\" != \"\" ] ; then\n      export GIT_SSL_CAINFO=\"${WORKSPACE_SSL_CA_DIRECTORY_PATH}/${PARAM_CRT_FILENAME}\"\n   fi\nfi\nCHECKOUT_DIR=\"${WORKSPACE_OUTPUT_PATH}/${PARAM_SUBDIRECTORY}\"\n\ncleandir() {\n  # Delete any existing contents of the repo directory if it exists.\n  #\n  # We don't just \"rm -rf ${CHECKOUT_DIR}\" because ${CHECKOUT_DIR} might be \"/\"\n  # or the root of a mounted volume.\n  if [ -d \"${CHECKOUT_DIR}\" ] ; then\n    # Delete non-hidden files and directories\n    rm -rf \"${CHECKOUT_DIR:?}\"/*\n    # Delete files and directories starting with . but excluding ..\n    rm -rf \"${CHECKOUT_DIR}\"/.[!.]*\n    # Delete files and directories starting with .. plus any other character\n    rm -rf \"${CHECKOUT_DIR}\"/..?*\n  fi\n}\n\nif [ \"${PARAM_DELETE_EXISTING}\" = \"true\" ] ; then\n  cleandir || true\nfi\n\ntest -z \"${PARAM_HTTP_PROXY}\" || export HTTP_PROXY=\"${PARAM_HTTP_PROXY}\"\ntest -z \"${PARAM_HTTPS_PROXY}\" || export HTTPS_PROXY=\"${PARAM_HTTPS_PROXY}\"\ntest -z \"${PARAM_NO_PROXY}\" || export NO_PROXY=\"${PARAM_NO_PROXY}\"\n\ngit config --global --add safe.directory \"${WORKSPACE_OUTPUT_PATH}\"\n/ko-app/git-init \\\n  -url=\"${PARAM_URL}\" \\\n  -revision=\"${PARAM_REVISION}\" \\\n  -refspec=\"${PARAM_REFSPEC}\" \\\n  -path=\"${CHECKOUT_DIR}\" \\\n  -sslVerify=\"${PARAM_SSL_VERIFY}\" \\\n  -submodules=\"${PARAM_SUBMODULES}\" \\\n  -depth=\"${PARAM_DEPTH}\" \\\n  -sparseCheckoutDirectories=\"${PARAM_SPARSE_CHECKOUT_DIRECTORIES}\"\ncd \"${CHECKOUT_DIR}\"\nRESULT_SHA=\"$(git rev-parse HEAD)\"\nEXIT_CODE=\"$?\"\nif [ \"${EXIT_CODE}\" != 0 ] ; then\n  exit \"${EXIT_CODE}\"\nfi\nRESULT_COMMITTER_DATE=\"$(git log -1 --pretty=%ct)\"\nprintf \"%s\" \"${RESULT_COMMITTER_DATE}\" > \"/tekton/results/committer-date\"\nprintf \"%s\" \"${RESULT_SHA}\" > \"/tekton/results/commit\"\nprintf \"%s\" \"${PARAM_URL}\" > \"/tekton/results/url\"\n",
+              "arguments": null,
+              "environment": {
+                "container": "clone",
+                "image": "oci://registry.redhat.io/openshift-pipelines/pipelines-git-init-rhel8@sha256:539b019e2ff60c023c1b2d0c43f02859ef1e8c3718048be71c07e02af407c46a"
+              },
+              "annotations": null
+            }
+          ],
+          "invocation": {
+            "configSource": {},
+            "parameters": {
+              "crtFileName": "ca-bundle.crt",
+              "deleteExisting": "true",
+              "depth": "1",
+              "gitInitImage": "registry.redhat.io/openshift-pipelines/pipelines-git-init-rhel8@sha256:681dc67d2aa1dbecbf65ecd229c8b181dae533bf14b07543c1aeead36aed2198",
+              "httpProxy": "",
+              "httpsProxy": "",
+              "noProxy": "",
+              "refspec": "",
+              "revision": "pipelines-1.8",
+              "sparseCheckoutDirectories": "",
+              "sslVerify": "true",
+              "subdirectory": "",
+              "submodules": "true",
+              "url": "https://github.com/openshift/pipelines-vote-api.git",
+              "userHome": "/home/git",
+              "verbose": "true"
+            },
+            "environment": {
+              "annotations": {
+                "operator.tekton.dev/last-applied-hash": "dece52de9f7ffe52dd15de6ee430346345a91f5c3129371aba204d3f79cef841",
+                "pipeline.tekton.dev/release": "84aa130",
+                "tekton.dev/categories": "Git",
+                "tekton.dev/displayName": "git clone",
+                "tekton.dev/pipelines.minVersion": "0.38.0",
+                "tekton.dev/platforms": "linux/amd64,linux/s390x,linux/ppc64le,linux/arm64",
+                "tekton.dev/tags": "git"
+              },
+              "labels": {
+                "app.kubernetes.io/managed-by": "tekton-pipelines",
+                "app.kubernetes.io/version": "0.9",
+                "operator.tekton.dev/operand-name": "openshift-pipelines-addons",
+                "operator.tekton.dev/provider-type": "redhat",
+                "tekton.dev/clusterTask": "git-clone",
+                "tekton.dev/memberOf": "tasks",
+                "tekton.dev/pipeline": "image-build",
+                "tekton.dev/pipelineRun": "build-mgkh7",
+                "tekton.dev/pipelineTask": "fetch-repository"
+              }
+            }
+          },
+          "results": [
+            {
+              "name": "commit",
+              "type": "string",
+              "value": "493b864eb4459ae21df53adc5bca7fb409bc8180"
+            },
+            {
+              "name": "committer-date",
+              "type": "string",
+              "value": "1659470964"
+            },
+            {
+              "name": "url",
+              "type": "string",
+              "value": "https://github.com/openshift/pipelines-vote-api.git"
+            }
+          ]
+        },
+        {
+          "name": "build-image",
+          "after": [
+            "fetch-repository"
+          ],
+          "ref": {
+            "name": "buildah",
+            "kind": "ClusterTask"
+          },
+          "startedOn": "2024-07-19T11:25:21Z",
+          "finishedOn": "2024-07-19T11:26:46Z",
+          "status": "Succeeded",
+          "steps": [
+            {
+              "entryPoint": "ENTITLEMENT_VOLUME=\"\"\n\nif [[ \"false\" == \"true\" ]]; then\n  ENTITLEMENT_VOLUME=\"--volume /tmp/entitlement:/etc/pki/entitlement\"\nfi\n\nbuildah bud --storage-driver=vfs \\\n  $ENTITLEMENT_VOLUME  \\\n  --format=oci --tls-verify=true \\\n  -f ./Dockerfile -t quay.io/stbenji/pipelines-vote-api-vault:0.0.0 .\n\n[[ \"false\" == \"true\" ]] && echo \"Push skipped\" && exit 0\n\nif [[ \"false\" == \"true\" ]]; then\n\n  # if config.json exists at workspace root, we use that\n  if test -f \"/config.json\"; then\n    export DOCKER_CONFIG=\"\"\n\n  # else we look for .dockerconfigjson at the root\n  elif test -f \"/.dockerconfigjson\"; then\n    cp \"/.dockerconfigjson\" \"$HOME/.docker/config.json\"\n    export DOCKER_CONFIG=\"$HOME/.docker\"\n\n  # need to error out if neither files are present\n  else\n    echo \"neither 'config.json' nor '.dockerconfigjson' found at workspace root\"\n    exit 1\n  fi\nfi\n\nbuildah --storage-driver=vfs push \\\n   --tls-verify=true \\\n  --digestfile /tmp/image-digest quay.io/stbenji/pipelines-vote-api-vault:0.0.0 \\\n  docker://quay.io/stbenji/pipelines-vote-api-vault:0.0.0\ncat /tmp/image-digest | tee /tekton/results/IMAGE_DIGEST\necho -n \"quay.io/stbenji/pipelines-vote-api-vault:0.0.0\" | tee /tekton/results/IMAGE_URL\n",
+              "arguments": null,
+              "environment": {
+                "container": "build-and-push",
+                "image": "oci://registry.redhat.io/rhel8/buildah@sha256:9cf08506ffdabb2034332e028f8a23f200cac8dda6233b58d5dfdc5a03cbc322"
+              },
+              "annotations": null
+            }
+          ],
+          "invocation": {
+            "configSource": {},
+            "parameters": {
+              "BUILDER_IMAGE": "registry.redhat.io/rhel8/buildah@sha256:aac6629389db17e99894c5bee0da01d4c8065d11d8c6f6e1602f9484290baa70",
+              "BUILD_EXTRA_ARGS": "",
+              "CONTEXT": ".",
+              "DOCKERFILE": "./Dockerfile",
+              "FORMAT": "oci",
+              "IMAGE": "quay.io/stbenji/pipelines-vote-api-vault:0.0.0",
+              "PUSH_EXTRA_ARGS": "",
+              "SKIP_PUSH": "false",
+              "STORAGE_DRIVER": "vfs",
+              "TLSVERIFY": "true"
+            },
+            "environment": {
+              "annotations": {
+                "operator.tekton.dev/last-applied-hash": "0698a659f74a191bace1b06a5a27d3b0c7f34b0cbf35038da13975d48b175b04",
+                "pipeline.tekton.dev/release": "84aa130",
+                "tekton.dev/pipelines.minVersion": "0.12.1",
+                "tekton.dev/tags": "image-build"
+              },
+              "labels": {
+                "app.kubernetes.io/managed-by": "tekton-pipelines",
+                "app.kubernetes.io/version": "0.1",
+                "operator.tekton.dev/operand-name": "openshift-pipelines-addons",
+                "operator.tekton.dev/provider-type": "redhat",
+                "tekton.dev/clusterTask": "buildah",
+                "tekton.dev/memberOf": "tasks",
+                "tekton.dev/pipeline": "image-build",
+                "tekton.dev/pipelineRun": "build-mgkh7",
+                "tekton.dev/pipelineTask": "build-image"
+              }
+            }
+          },
+          "results": [
+            {
+              "name": "IMAGE_DIGEST",
+              "type": "string",
+              "value": "sha256:4440300832a878f3d3db0542e750067b6611b42ebeb401a1da4a28bdcf98bcda"
+            },
+            {
+              "name": "IMAGE_URL",
+              "type": "string",
+              "value": "quay.io/stbenji/pipelines-vote-api-vault:0.0.0"
+            }
+          ]
+        },
+        {
+          "name": "create-sbom",
+          "after": [
+            "build-image"
+          ],
+          "ref": {
+            "name": "syft",
+            "kind": "Task"
+          },
+          "startedOn": "2024-07-19T11:26:46Z",
+          "finishedOn": "2024-07-19T11:26:54Z",
+          "status": "Succeeded",
+          "steps": [
+            {
+              "entryPoint": "",
+              "arguments": [
+                "scan",
+                "registry:quay.io/stbenji/pipelines-vote-api-vault@sha256:4440300832a878f3d3db0542e750067b6611b42ebeb401a1da4a28bdcf98bcda",
+                "-o",
+                "spdx-json=/attestation_tmp/attestation.sbom"
+              ],
+              "environment": {
+                "container": "syft",
+                "image": "oci://docker.io/anchore/syft@sha256:205d527263647054b457a0622b27aa8e584351c9bae66846bbaba1e4fb0e6561"
+              },
+              "annotations": null
+            },
+            {
+              "entryPoint": "/bin/bash",
+              "arguments": [
+                "-c",
+                "cosign attest -y --tlog-upload=false --key=hashivault://cosign --predicate /attestation_tmp/attestation.sbom --type spdxjson quay.io/stbenji/pipelines-vote-api-vault@sha256:4440300832a878f3d3db0542e750067b6611b42ebeb401a1da4a28bdcf98bcda --attachment-tag-prefix sbom- "
+              ],
+              "environment": {
+                "container": "cosign",
+                "image": "oci://docker.io/bitnami/cosign@sha256:2258d4e9121d89ecc0a5834cdfe193425f66ab3203c22f96ca5df3dfa783cabb"
+              },
+              "annotations": null
+            }
+          ],
+          "invocation": {
+            "configSource": {},
+            "parameters": {
+              "COSIGN_IMAGE": "bitnami/cosign:latest",
+              "COSIGN_SCRIPT": "cosign attest -y --tlog-upload=false --key=hashivault://cosign --predicate /attestation_tmp/attestation.sbom --type spdxjson quay.io/stbenji/pipelines-vote-api-vault@sha256:4440300832a878f3d3db0542e750067b6611b42ebeb401a1da4a28bdcf98bcda --attachment-tag-prefix sbom- ",
+              "SYFT_ARGS": [
+                "scan",
+                "registry:quay.io/stbenji/pipelines-vote-api-vault@sha256:4440300832a878f3d3db0542e750067b6611b42ebeb401a1da4a28bdcf98bcda",
+                "-o",
+                "spdx-json=/attestation_tmp/attestation.sbom"
+              ],
+              "SYFT_IMAGE": "docker.io/anchore/syft:latest",
+              "vault-addr-key": "VAULT_ADDR",
+              "vault-secret-name": "vault-secret",
+              "vault-token-key": "VAULT_TOKEN"
+            },
+            "environment": {
+              "annotations": {
+                "pipeline.tekton.dev/release": "84aa130",
+                "tekton.dev/categories": "Security",
+                "tekton.dev/displayName": "syft",
+                "tekton.dev/pipelines.minVersion": "0.12.1",
+                "tekton.dev/platforms": "linux/amd64,linux/arm64",
+                "tekton.dev/tags": "CLI, syft"
+              },
+              "labels": {
+                "app.kubernetes.io/managed-by": "tekton-pipelines",
+                "tekton.dev/memberOf": "tasks",
+                "tekton.dev/pipeline": "image-build",
+                "tekton.dev/pipelineRun": "build-mgkh7",
+                "tekton.dev/pipelineTask": "create-sbom",
+                "tekton.dev/task": "syft"
+              }
+            }
+          }
+        },
+        {
+          "name": "create-vulnerability-attestation",
+          "after": [
+            "create-sbom",
+            "build-image"
+          ],
+          "ref": {
+            "name": "grype",
+            "kind": "Task"
+          },
+          "startedOn": "2024-07-19T11:26:54Z",
+          "finishedOn": "2024-07-19T11:27:20Z",
+          "status": "Succeeded",
+          "steps": [
+            {
+              "entryPoint": "",
+              "arguments": [
+                "registry:quay.io/stbenji/pipelines-vote-api-vault@sha256:4440300832a878f3d3db0542e750067b6611b42ebeb401a1da4a28bdcf98bcda",
+                "--file",
+                "/attestation_tmp/attestation.sarif",
+                "-o",
+                "sarif"
+              ],
+              "environment": {
+                "container": "grype",
+                "image": "oci://docker.io/anchore/grype@sha256:34d42846a6b3334643d64aa4be31b580791fa772b099f1d3deb2d9b22e9a0c3c"
+              },
+              "annotations": null
+            },
+            {
+              "entryPoint": "/bin/bash",
+              "arguments": [
+                "-c",
+                "cosign attest -y --tlog-upload=false --key=hashivault://cosign --predicate /attestation_tmp/attestation.sarif --type vuln quay.io/stbenji/pipelines-vote-api-vault@sha256:4440300832a878f3d3db0542e750067b6611b42ebeb401a1da4a28bdcf98bcda --attachment-tag-prefix sarif- "
+              ],
+              "environment": {
+                "container": "cosign",
+                "image": "oci://docker.io/bitnami/cosign@sha256:2258d4e9121d89ecc0a5834cdfe193425f66ab3203c22f96ca5df3dfa783cabb"
+              },
+              "annotations": null
+            }
+          ],
+          "invocation": {
+            "configSource": {},
+            "parameters": {
+              "COSIGN_IMAGE": "bitnami/cosign:latest",
+              "COSIGN_SCRIPT": "cosign attest -y --tlog-upload=false --key=hashivault://cosign --predicate /attestation_tmp/attestation.sarif --type vuln quay.io/stbenji/pipelines-vote-api-vault@sha256:4440300832a878f3d3db0542e750067b6611b42ebeb401a1da4a28bdcf98bcda --attachment-tag-prefix sarif- ",
+              "GRYPE_ARGS": [
+                "registry:quay.io/stbenji/pipelines-vote-api-vault@sha256:4440300832a878f3d3db0542e750067b6611b42ebeb401a1da4a28bdcf98bcda",
+                "--file",
+                "/attestation_tmp/attestation.sarif",
+                "-o",
+                "sarif"
+              ],
+              "GRYPE_IMAGE": "docker.io/anchore/grype:v0.56.0",
+              "vault-addr-key": "VAULT_ADDR",
+              "vault-secret-name": "vault-secret",
+              "vault-token-key": "VAULT_TOKEN"
+            },
+            "environment": {
+              "annotations": {
+                "pipeline.tekton.dev/release": "84aa130",
+                "tekton.dev/categories": "Security",
+                "tekton.dev/displayName": "grype",
+                "tekton.dev/pipelines.minVersion": "0.12.1",
+                "tekton.dev/platforms": "linux/amd64,linux/arm64",
+                "tekton.dev/tags": "CLI, grype"
+              },
+              "labels": {
+                "app.kubernetes.io/managed-by": "tekton-pipelines",
+                "tekton.dev/memberOf": "tasks",
+                "tekton.dev/pipeline": "image-build",
+                "tekton.dev/pipelineRun": "build-mgkh7",
+                "tekton.dev/pipelineTask": "create-vulnerability-attestation",
+                "tekton.dev/task": "grype"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "metadata": {
+      "buildStartedOn": "2024-07-19T11:25:13Z",
+      "buildFinishedOn": "2024-07-19T11:27:20Z",
+      "completeness": {
+        "parameters": false,
+        "environment": false,
+        "materials": false
+      },
+      "reproducible": false
+    },
+    "materials": [
+      {
+        "uri": "oci://registry.redhat.io/openshift-pipelines/pipelines-git-init-rhel8",
+        "digest": {
+          "sha256": "539b019e2ff60c023c1b2d0c43f02859ef1e8c3718048be71c07e02af407c46a"
+        }
+      },
+      {
+        "uri": "oci://registry.redhat.io/rhel8/buildah",
+        "digest": {
+          "sha256": "9cf08506ffdabb2034332e028f8a23f200cac8dda6233b58d5dfdc5a03cbc322"
+        }
+      },
+      {
+        "uri": "oci://docker.io/anchore/syft",
+        "digest": {
+          "sha256": "205d527263647054b457a0622b27aa8e584351c9bae66846bbaba1e4fb0e6561"
+        }
+      },
+      {
+        "uri": "oci://docker.io/bitnami/cosign",
+        "digest": {
+          "sha256": "2258d4e9121d89ecc0a5834cdfe193425f66ab3203c22f96ca5df3dfa783cabb"
+        }
+      },
+      {
+        "uri": "oci://docker.io/anchore/grype",
+        "digest": {
+          "sha256": "34d42846a6b3334643d64aa4be31b580791fa772b099f1d3deb2d9b22e9a0c3c"
+        }
+      }
+    ]
+  }
+}
