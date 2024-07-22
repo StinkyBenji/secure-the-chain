@@ -21,8 +21,6 @@ spec:
     description: image tag to be build from the code
     name: IMAGE_TAG
     type: string
-  # - name: rekor-url
-  #   type: string
   - name: vault-key
     type: string
   results:
@@ -72,7 +70,7 @@ spec:
       - -o
       - spdx-json=/attestation_tmp/attestation.sbom
     - name: COSIGN_SCRIPT
-      value: "cosign attest -y --tlog-upload=false --key=$(params.vault-key) --predicate /attestation_tmp/attestation.sbom --type spdxjson $(params.IMAGE)@$(tasks.build-image.results.IMAGE_DIGEST) --attachment-tag-prefix sbom- "
+      value: "cosign attest -y --key=$(params.vault-key) --predicate /attestation_tmp/attestation.sbom --type spdxjson $(params.IMAGE)@$(tasks.build-image.results.IMAGE_DIGEST) --attachment-tag-prefix sbom- "
     retries: 5
     runAfter:
     - build-image
@@ -90,7 +88,7 @@ spec:
       - -o
       - sarif
     - name: COSIGN_SCRIPT
-      value: "cosign attest -y --tlog-upload=false --key=$(params.vault-key) --predicate /attestation_tmp/attestation.sarif --type vuln $(params.IMAGE)@$(tasks.build-image.results.IMAGE_DIGEST) --attachment-tag-prefix sarif- "
+      value: "cosign attest -y --key=$(params.vault-key) --predicate /attestation_tmp/attestation.sarif --type vuln $(params.IMAGE)@$(tasks.build-image.results.IMAGE_DIGEST) --attachment-tag-prefix sarif- "
     retries: 5
     runAfter:
     - create-sbom

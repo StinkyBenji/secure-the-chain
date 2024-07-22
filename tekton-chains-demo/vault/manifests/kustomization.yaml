@@ -6,6 +6,8 @@ namespace: security-demo
 resources:
   - namespace.yaml
   - pipeline-sa.yaml
+  - pipeline-edit-rb.yaml
+  - pipeline-scc-rb.yaml
   - registry-secret.yaml
   - vault-secret.yaml
   - build-pvc.yaml
