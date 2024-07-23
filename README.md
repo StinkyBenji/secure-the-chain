@@ -15,11 +15,6 @@ CLI:
 
 You can run `oc apply -f operators/<operator>/subscription.yaml` to install the operators or install them from OperatorHub.
 
-By running `oc apply -k manifests/`, it will create necessary manifests for running the demo.
-
-Remember to update the `registry-credential.yaml` with your own registry credential.
-
-
 ## Introduction
 
 Software supply chain security is a crucial topic these days. There are many technologies that help us achieve a more secure software delivery process. In this repository, we will use Tekton and configure Tekton Chains for building and signing container image. Enterprise Contrac (TBD) is used for verifying the image and enforcing policies about the delivery pipleline.
