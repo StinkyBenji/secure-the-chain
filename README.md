@@ -1,11 +1,21 @@
-### prerequisites (TBD)
-- openshift-pipelines operator installed
-- rhtas operator installed
-- spiffe/spire deployed
-- securesign resource created with desired manifest - see trusted-artifact-signer
-- tekton chain controller configured - see tektonconfig
+# Security Demo Instruction - SPIFFE/SPIRE
 
-- create the tasks and pipeline
-- create the registry secret
-- link the secret to pipeline service account
+## Prerequisites
+- OpenShift cluster is available
+- rhtas operator installed
+- openshift-pipelines operator installed
+
+## SPIFFE/SPIRE
+We 
+
+
+## Configurations
+
+### Sigstore
+
+
+### TektonConfig
+
+
+## Demo Time
 
