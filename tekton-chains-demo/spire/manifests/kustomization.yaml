@@ -4,6 +4,12 @@ kind: Kustomization
 namespace: security-demo
 
 resources:
+  - namespace.yaml
+  - pipeline-sa.yaml
+  - pipeline-edit-rb.yaml
+  - pipeline-scc-rb.yaml
+  - registry-credentials.yaml
+  - build-pvc.yaml
   - demo-pipeline.yaml
   - ./tasks/grype.yaml
   - ./tasks/syft.yaml

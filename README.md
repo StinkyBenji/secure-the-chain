@@ -85,13 +85,21 @@ https://www.chainguard.dev/unchained/a-fulcio-deep-dive
 ## Demo Time
 The demo includes a simple image build pipeline where the image will be signed. Additionally, SBOM and vulnerability reports will be generated separately by Syft and Grype, respectively, and attached to the image.
 
+### Set Up authentication for OCI
+`pipeline` service account will need the registry credentials to push image and its signatures and attestations to the desired OCI registry.
+Therefore, we need to create a secret that contains the required dockerconfig.json and link it to the service account that will be used in the pipeline. 
+
+By running `oc apply -k tekton-chains-demo/spire/manifests/`, it will create necessary manifests for running the demo.
+
 ### Task and Pipeline
-As mentioned, we use syft for generating SBOM and grype for scanning vulnerabilities. Two custom Tekton Tasks are needed (see `tekton-chains-demo/vault/tasks`). Additionally, a cosign script is added to both tasks, which will use the deployed Sigstore components to attest both generated SBOM and vulnerability report to the built image.
+As mentioned, we use syft for generating SBOM and grype for scanning vulnerabilities. Two custom Tekton Tasks are needed (see `tekton-chains-demo/spire/tasks`). Additionally, a cosign script is added to both tasks, which will use the deployed Sigstore components to attest both generated SBOM and vulnerability report to the built image.
 
 ```
+# Initializes SigStore root to retrieve trusted certificate and key targets for verification using TUF repository.
 
 cosign initialize --mirror=$TUF_URL --root=$TUF_URL/root.json
 
+# Attach SBOM attestation to the container image 
 cosign attest $(params.IMAGE)@$(tasks.build-image.results.IMAGE_DIGEST) -y --fulcio-url=$(params.fulcio-url) --rekor-url=$(params.rekor-url) --oidc-issuer=$(params.oidc-issuer-url) --predicate /attestation_tmp/attestation.sbom --type spdxjson --replace --attachment-tag-prefix sbom- 
 ```
 
