@@ -10,7 +10,7 @@ spec:
   destination:
     namespace: spire-server
     server: 'https://kubernetes.default.svc'
-  project: cluster-app
+  project: default
   sources:
     - helm:
         valueFiles:

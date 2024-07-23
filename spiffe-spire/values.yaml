@@ -17,7 +17,7 @@ global:
   ca_subject:
     country: DE
     organization: Red Hat
-    common_name: "COMMON_NAME"
+    common_name: "CLUSTER_DOMAIN"
 
 spire-server:
   tornjak:

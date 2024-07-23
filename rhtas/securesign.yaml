@@ -1,0 +1,52 @@
+apiVersion: rhtas.redhat.com/v1alpha1
+kind: Securesign
+metadata:
+  name: securesign
+  namespace: trusted-artifact-signer
+spec:
+  ctlog: {}
+  fulcio:
+    certificate:
+      commonName: $CLUSTER_DOMAIN
+      organizationEmail: $EMAIL
+      organizationName: $ORGANIZATION_NAME
+    config:
+      OIDCIssuers:
+        - ClientID: sigstore
+          Issuer: $SPIRE_OIDC_URL
+          IssuerURL: $SPIRE_OIDC_URL
+          SPIFFETrustDomain: $CLUSTER_DOMAIN
+          Type: spiffe
+    externalAccess:
+      enabled: true
+    monitoring:
+      enabled: false
+  rekor:
+    backFillRedis:
+      enabled: true
+      schedule: 0 0 * * *
+    externalAccess:
+      enabled: true
+    monitoring:
+      enabled: false
+    pvc:
+      retain: true
+      size: 5Gi
+    rekorSearchUI:
+      enabled: true
+    signer:
+      kms: secret
+  trillian:
+    database:
+      create: true
+      pvc:
+        retain: true
+        size: 5Gi
+  tuf:
+    externalAccess:
+      enabled: true
+    keys:
+      - name: rekor.pub
+      - name: ctfe.pub
+      - name: fulcio_v1.crt.pem
+    port: 80

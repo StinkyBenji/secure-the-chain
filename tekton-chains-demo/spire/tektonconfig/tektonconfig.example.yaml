@@ -9,18 +9,16 @@ spec:
     enable-cel-in-whenexpression: true
   chain:
     artifacts.oci.storage: "oci"
-    artifacts.pipelinerun.format: "in-toto"
     artifacts.pipelinerun.storage: "oci"
-    artifacts.taskrun.format: "in-toto"
     artifacts.taskrun.signer: x509
     artifacts.pipelinerun.signer: x509
-    signers.x509.fulcio.address: ""
+    signers.x509.fulcio.address: $FULCIO_URL
     signers.x509.fulcio.enabled: true
-    signers.x509.fulcio.issuer: ""
+    signers.x509.fulcio.issuer: $SPIFFE_OIDC_URL
     signers.x509.fulcio.provider: spiffe
-    signers.x509.tuf.mirror.url: ""
+    signers.x509.tuf.mirror.url: $TUF_URL
     transparency.enabled: "true"
-    transparency.url: ""
+    transparency.url: $REKOR_URL
     options:
       disabled: false
       deployments:
