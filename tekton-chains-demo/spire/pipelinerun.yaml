@@ -14,13 +14,13 @@ spec:
     - name: IMAGE_TAG
       value: "0.1.0"
     - name: fulcio-url
-      value: 
+      value: ""
     - name: rekor-url
-      value:  
+      value:  ""
     - name: oidc-issuer-url
-      value: 
+      value: ""
     - name: tuf-url
-      value: 
+      value: ""
   pipelineRef:
     name: image-build
   taskRunTemplate:

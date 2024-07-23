@@ -1,11 +1,11 @@
-# Secure the chain!
+### prerequisites (TBD)
+- openshift-pipelines operator installed
+- rhtas operator installed
+- spiffe/spire deployed
+- securesign resource created with desired manifest - see trusted-artifact-signer
+- tekton chain controller configured - see tektonconfig
 
-## Operators 
-- openshift-gitops operator
-- openshift-pipelines operator 
-- rhtas operator 
+- create the tasks and pipeline
+- create the registry secret
+- link the secret to pipeline service account
 
-
-## Reference
-- [syft](https://github.com/anchore/syft)
-- [grype](https://github.com/anchore/grype)

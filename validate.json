@@ -1,0 +1,86 @@
+{
+  "success": true,
+  "components": [
+    {
+      "name": "Unnamed",
+      "containerImage": "quay.io/stbenji/pipelines-vote-api@sha256:4d64c18cc5b2fcfc1a882be42c1969a4179fab19fd5be4387b23d7dd286d04f8",
+      "source": {},
+      "success": true,
+      "signatures": [
+        {
+          "keyid": "b1e50fdb5bdf2a68a3c4a9bf83b3009bf20b3bc7",
+          "sig": "MEQCIEhOKDbjX3FnCdmhQl0KsyHyxz/n7GW7YZe60zRgm0kkAiA/8KnO6AWA5p56965uvD4H0VZMMrGUE4jZgFF/BxaPJw==",
+          "certificate": "-----BEGIN CERTIFICATE-----\nMIIDZDCCAumgAwIBAgIUB5xT75iAYiPHAiWJkcusi4NkVaIwCgYIKoZIzj0EAwMw\nQTEQMA4GA1UEChMHUmVkIEhhdDEtMCsGA1UEAxMkYXBwcy5vY3A0LndoYXRldmVy\nLm91dC1vZi1teS1oZWFkLmRlMB4XDTI0MDcxNzEzMjUxOFoXDTI0MDcxNzEzMzUx\nOFowADBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABDUC41LZMstyvVTXmBLNBZ6r\nXaszmChog1AqIb44L6BTZc2xMnCXsmtGJYscahDBTkU1/52fPLYM1aLDcrC3bo2j\nggH+MIIB+jAOBgNVHQ8BAf8EBAMCB4AwEwYDVR0lBAwwCgYIKwYBBQUHAwMwHQYD\nVR0OBBYEFLHlD9tb3ypoo8Spv4OzAJvyCzvHMB8GA1UdIwQYMBaAFMDfXYU8nGXo\n4wXcCe/EQMF5EAodMG4GA1UdEQEB/wRkMGKGYHNwaWZmZTovL2FwcHMub2NwNC53\naGF0ZXZlci5vdXQtb2YtbXktaGVhZC5kZS9ucy9vcGVuc2hpZnQtcGlwZWxpbmVz\nL3NhL3Rla3Rvbi1jaGFpbnMtY29udHJvbGxlcjBJBgorBgEEAYO/MAEBBDtodHRw\nczovL29pZGMtZGlzY292ZXJ5LmFwcHMub2NwNC53aGF0ZXZlci5vdXQtb2YtbXkt\naGVhZC5kZTBLBgorBgEEAYO/MAEIBD0MO2h0dHBzOi8vb2lkYy1kaXNjb3Zlcnku\nYXBwcy5vY3A0LndoYXRldmVyLm91dC1vZi1teS1oZWFkLmRlMIGKBgorBgEEAdZ5\nAgQCBHwEegB4AHYAOsuh81F6zCypr+sClqNay1quZLIirlwmpLsU/wbdfzIAAAGQ\nwN5jLAAABAMARzBFAiBcVHMjhmBJ/WrqtRlTcBccoblydLn6R6jbOSI1lnrO3AIh\nAIezQs/v1kyOIAxvuKSzWqHsI33A0w5YUtULNPorMgb/MAoGCCqGSM49BAMDA2kA\nMGYCMQCb+GfETlXR8SNu4ET+9HRfMokGk6FCixggH8T+zgVKnmQlahrLHrWY8dsJ\nAvQw+dACMQDb3MF5hvwnBkkBjqKiwnykivPH9Yk+Hrlt+FiBBbc/Nk040Tjy+hG8\nZhpSZtcFGRg=\n-----END CERTIFICATE-----\n",
+          "chain": [
+            "-----BEGIN CERTIFICATE-----\nMIICHjCCAaSgAwIBAgIUfx1VDt0dW2dfnbH1JhRmK7zaCTQwCgYIKoZIzj0EAwMw\nQTEQMA4GA1UEChMHUmVkIEhhdDEtMCsGA1UEAxMkYXBwcy5vY3A0LndoYXRldmVy\nLm91dC1vZi1teS1oZWFkLmRlMB4XDTI0MDcxNzEzMDEyOVoXDTM0MDcxNTEzMDEy\nOVowQTEQMA4GA1UEChMHUmVkIEhhdDEtMCsGA1UEAxMkYXBwcy5vY3A0LndoYXRl\ndmVyLm91dC1vZi1teS1oZWFkLmRlMHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEu6oo\ne5yny8T8oybxV/0sLM8JJDMD90EQh2OzZ+1zi5RG+CFUaMYlxJGK+EIgJ0NskMLJ\ngvL+mcUhTbYA8YosDrcmlxtkh2w4QMympmFlGP584vtEMkxKvjcgIu7pzhhLo10w\nWzAOBgNVHQ8BAf8EBAMCAQYwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUwN9d\nhTycZejjBdwJ78RAwXkQCh0wGQYDVR0RBBIwEIEOcnpoQHJlZGhhdC5jb20wCgYI\nKoZIzj0EAwMDaAAwZQIwIsaVT3cs6bnpRQvfj//YAxF1SgU3tfYO4JNbnmkIaIfO\nE0LVQsdaYqxi2TRYvmUXAjEA6FoK9WQJfxpWpAnsk/oSx0/zcKSWLmoZ7YGyiytY\nl3/7re6eZl83NCdsejaeZ4pD\n-----END CERTIFICATE-----\n"
+          ],
+          "metadata": {
+            "Fulcio Issuer": "https://oidc-discovery.apps.ocp4.whatever.out-of-my-head.de",
+            "Fulcio Issuer (V2)": "https://oidc-discovery.apps.ocp4.whatever.out-of-my-head.de",
+            "Issuer": "CN=apps.ocp4.whatever.out-of-my-head.de,O=Red Hat",
+            "Not After": "2024-07-17T13:35:18Z",
+            "Not Before": "2024-07-17T13:25:18Z",
+            "Serial Number": "79c53ef98806223c702258991cbac8b836455a2",
+            "Subject Alternative Name": "URIs:spiffe://apps.ocp4.whatever.out-of-my-head.de/ns/openshift-pipelines/sa/tekton-chains-controller"
+          }
+        }
+      ],
+      "attestations": [
+        {
+          "type": "https://in-toto.io/Statement/v0.1",
+          "predicateType": "https://slsa.dev/provenance/v0.2",
+          "predicateBuildType": "tekton.dev/v1beta1/TaskRun",
+          "signatures": [
+            {
+              "keyid": "b1e50fdb5bdf2a68a3c4a9bf83b3009bf20b3bc7",
+              "sig": "MEQCIB7Ien9eUS9zxv3rEeSUfhURT1FQ2Y8a5EZeZonTGqKIAiAn0WTtmz+XMnsebOlddb4uR26BLyCi2fiqgdFNjb1W1w==",
+              "certificate": "-----BEGIN CERTIFICATE-----\nMIIDZDCCAumgAwIBAgIUB5xT75iAYiPHAiWJkcusi4NkVaIwCgYIKoZIzj0EAwMw\nQTEQMA4GA1UEChMHUmVkIEhhdDEtMCsGA1UEAxMkYXBwcy5vY3A0LndoYXRldmVy\nLm91dC1vZi1teS1oZWFkLmRlMB4XDTI0MDcxNzEzMjUxOFoXDTI0MDcxNzEzMzUx\nOFowADBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABDUC41LZMstyvVTXmBLNBZ6r\nXaszmChog1AqIb44L6BTZc2xMnCXsmtGJYscahDBTkU1/52fPLYM1aLDcrC3bo2j\nggH+MIIB+jAOBgNVHQ8BAf8EBAMCB4AwEwYDVR0lBAwwCgYIKwYBBQUHAwMwHQYD\nVR0OBBYEFLHlD9tb3ypoo8Spv4OzAJvyCzvHMB8GA1UdIwQYMBaAFMDfXYU8nGXo\n4wXcCe/EQMF5EAodMG4GA1UdEQEB/wRkMGKGYHNwaWZmZTovL2FwcHMub2NwNC53\naGF0ZXZlci5vdXQtb2YtbXktaGVhZC5kZS9ucy9vcGVuc2hpZnQtcGlwZWxpbmVz\nL3NhL3Rla3Rvbi1jaGFpbnMtY29udHJvbGxlcjBJBgorBgEEAYO/MAEBBDtodHRw\nczovL29pZGMtZGlzY292ZXJ5LmFwcHMub2NwNC53aGF0ZXZlci5vdXQtb2YtbXkt\naGVhZC5kZTBLBgorBgEEAYO/MAEIBD0MO2h0dHBzOi8vb2lkYy1kaXNjb3Zlcnku\nYXBwcy5vY3A0LndoYXRldmVyLm91dC1vZi1teS1oZWFkLmRlMIGKBgorBgEEAdZ5\nAgQCBHwEegB4AHYAOsuh81F6zCypr+sClqNay1quZLIirlwmpLsU/wbdfzIAAAGQ\nwN5jLAAABAMARzBFAiBcVHMjhmBJ/WrqtRlTcBccoblydLn6R6jbOSI1lnrO3AIh\nAIezQs/v1kyOIAxvuKSzWqHsI33A0w5YUtULNPorMgb/MAoGCCqGSM49BAMDA2kA\nMGYCMQCb+GfETlXR8SNu4ET+9HRfMokGk6FCixggH8T+zgVKnmQlahrLHrWY8dsJ\nAvQw+dACMQDb3MF5hvwnBkkBjqKiwnykivPH9Yk+Hrlt+FiBBbc/Nk040Tjy+hG8\nZhpSZtcFGRg=\n-----END CERTIFICATE-----\n",
+              "chain": [
+                "-----BEGIN CERTIFICATE-----\nMIICHjCCAaSgAwIBAgIUfx1VDt0dW2dfnbH1JhRmK7zaCTQwCgYIKoZIzj0EAwMw\nQTEQMA4GA1UEChMHUmVkIEhhdDEtMCsGA1UEAxMkYXBwcy5vY3A0LndoYXRldmVy\nLm91dC1vZi1teS1oZWFkLmRlMB4XDTI0MDcxNzEzMDEyOVoXDTM0MDcxNTEzMDEy\nOVowQTEQMA4GA1UEChMHUmVkIEhhdDEtMCsGA1UEAxMkYXBwcy5vY3A0LndoYXRl\ndmVyLm91dC1vZi1teS1oZWFkLmRlMHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEu6oo\ne5yny8T8oybxV/0sLM8JJDMD90EQh2OzZ+1zi5RG+CFUaMYlxJGK+EIgJ0NskMLJ\ngvL+mcUhTbYA8YosDrcmlxtkh2w4QMympmFlGP584vtEMkxKvjcgIu7pzhhLo10w\nWzAOBgNVHQ8BAf8EBAMCAQYwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUwN9d\nhTycZejjBdwJ78RAwXkQCh0wGQYDVR0RBBIwEIEOcnpoQHJlZGhhdC5jb20wCgYI\nKoZIzj0EAwMDaAAwZQIwIsaVT3cs6bnpRQvfj//YAxF1SgU3tfYO4JNbnmkIaIfO\nE0LVQsdaYqxi2TRYvmUXAjEA6FoK9WQJfxpWpAnsk/oSx0/zcKSWLmoZ7YGyiytY\nl3/7re6eZl83NCdsejaeZ4pD\n-----END CERTIFICATE-----\n"
+              ],
+              "metadata": {
+                "Fulcio Issuer": "https://oidc-discovery.apps.ocp4.whatever.out-of-my-head.de",
+                "Fulcio Issuer (V2)": "https://oidc-discovery.apps.ocp4.whatever.out-of-my-head.de",
+                "Issuer": "CN=apps.ocp4.whatever.out-of-my-head.de,O=Red Hat",
+                "Not After": "2024-07-17T13:35:18Z",
+                "Not Before": "2024-07-17T13:25:18Z",
+                "Serial Number": "79c53ef98806223c702258991cbac8b836455a2",
+                "Subject Alternative Name": "URIs:spiffe://apps.ocp4.whatever.out-of-my-head.de/ns/openshift-pipelines/sa/tekton-chains-controller"
+              }
+            }
+          ]
+        },
+        {
+          "type": "https://in-toto.io/Statement/v0.1",
+          "predicateType": "https://slsa.dev/provenance/v0.2",
+          "predicateBuildType": "tekton.dev/v1beta1/PipelineRun",
+          "signatures": [
+            {
+              "keyid": "6667f3d825345f25e48ca07a0f51e8a560efac22",
+              "sig": "MEUCIFXnTTLc1e/XiVMEjtR3aLxAb3TKl9q5xGINiG32OpLeAiEA6WWXkCwjEiQL0mSUiDQmibV4PfafecyKaHKecwOBU9w=",
+              "certificate": "-----BEGIN CERTIFICATE-----\nMIIDZDCCAumgAwIBAgIUdWL0ieRyxcOShUjfDxJL3uHFdjIwCgYIKoZIzj0EAwMw\nQTEQMA4GA1UEChMHUmVkIEhhdDEtMCsGA1UEAxMkYXBwcy5vY3A0LndoYXRldmVy\nLm91dC1vZi1teS1oZWFkLmRlMB4XDTI0MDcxNzEzMjYwMVoXDTI0MDcxNzEzMzYw\nMVowADBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABDBsBIEN1LwougpVUrUgbtg2\nFNd5h1en/VUlhx7wkMOQRycqnDtYYe3xZscHbpywcCXc9wy4tQ91LmB4J2VUuoSj\nggH+MIIB+jAOBgNVHQ8BAf8EBAMCB4AwEwYDVR0lBAwwCgYIKwYBBQUHAwMwHQYD\nVR0OBBYEFGZn89glNF8l5Iygeg9R6KVg76wiMB8GA1UdIwQYMBaAFMDfXYU8nGXo\n4wXcCe/EQMF5EAodMG4GA1UdEQEB/wRkMGKGYHNwaWZmZTovL2FwcHMub2NwNC53\naGF0ZXZlci5vdXQtb2YtbXktaGVhZC5kZS9ucy9vcGVuc2hpZnQtcGlwZWxpbmVz\nL3NhL3Rla3Rvbi1jaGFpbnMtY29udHJvbGxlcjBJBgorBgEEAYO/MAEBBDtodHRw\nczovL29pZGMtZGlzY292ZXJ5LmFwcHMub2NwNC53aGF0ZXZlci5vdXQtb2YtbXkt\naGVhZC5kZTBLBgorBgEEAYO/MAEIBD0MO2h0dHBzOi8vb2lkYy1kaXNjb3Zlcnku\nYXBwcy5vY3A0LndoYXRldmVyLm91dC1vZi1teS1oZWFkLmRlMIGKBgorBgEEAdZ5\nAgQCBHwEegB4AHYAOsuh81F6zCypr+sClqNay1quZLIirlwmpLsU/wbdfzIAAAGQ\nwN8NWQAABAMARzBFAiEAzCE0RZ9EptYTNhuR3fv6tDLwtS4g++IUhw7I9bBYo7IC\nIGatQvJxKr3nd0D4GrcCyZNTZNA2d0QtbZ7f2j4QXdJqMAoGCCqGSM49BAMDA2kA\nMGYCMQDWJo+rbeR40hNmUrQ3fP2CzcT6jdBi6XyWxzTr8vQsof4Nz5fginTdfWFk\noGrhdIECMQDVQD+WRxAPKE63Zr+2L/DS2Vt3WB7XlP3zKzfVh/lUu0WjcN/InQY/\nyRb29s3CrY4=\n-----END CERTIFICATE-----\n",
+              "chain": [
+                "-----BEGIN CERTIFICATE-----\nMIICHjCCAaSgAwIBAgIUfx1VDt0dW2dfnbH1JhRmK7zaCTQwCgYIKoZIzj0EAwMw\nQTEQMA4GA1UEChMHUmVkIEhhdDEtMCsGA1UEAxMkYXBwcy5vY3A0LndoYXRldmVy\nLm91dC1vZi1teS1oZWFkLmRlMB4XDTI0MDcxNzEzMDEyOVoXDTM0MDcxNTEzMDEy\nOVowQTEQMA4GA1UEChMHUmVkIEhhdDEtMCsGA1UEAxMkYXBwcy5vY3A0LndoYXRl\ndmVyLm91dC1vZi1teS1oZWFkLmRlMHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEu6oo\ne5yny8T8oybxV/0sLM8JJDMD90EQh2OzZ+1zi5RG+CFUaMYlxJGK+EIgJ0NskMLJ\ngvL+mcUhTbYA8YosDrcmlxtkh2w4QMympmFlGP584vtEMkxKvjcgIu7pzhhLo10w\nWzAOBgNVHQ8BAf8EBAMCAQYwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUwN9d\nhTycZejjBdwJ78RAwXkQCh0wGQYDVR0RBBIwEIEOcnpoQHJlZGhhdC5jb20wCgYI\nKoZIzj0EAwMDaAAwZQIwIsaVT3cs6bnpRQvfj//YAxF1SgU3tfYO4JNbnmkIaIfO\nE0LVQsdaYqxi2TRYvmUXAjEA6FoK9WQJfxpWpAnsk/oSx0/zcKSWLmoZ7YGyiytY\nl3/7re6eZl83NCdsejaeZ4pD\n-----END CERTIFICATE-----\n"
+              ],
+              "metadata": {
+                "Fulcio Issuer": "https://oidc-discovery.apps.ocp4.whatever.out-of-my-head.de",
+                "Fulcio Issuer (V2)": "https://oidc-discovery.apps.ocp4.whatever.out-of-my-head.de",
+                "Issuer": "CN=apps.ocp4.whatever.out-of-my-head.de,O=Red Hat",
+                "Not After": "2024-07-17T13:36:01Z",
+                "Not Before": "2024-07-17T13:26:01Z",
+                "Serial Number": "7562f489e472c5c3928548df0f124bdee1c57632",
+                "Subject Alternative Name": "URIs:spiffe://apps.ocp4.whatever.out-of-my-head.de/ns/openshift-pipelines/sa/tekton-chains-controller"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "key": "",
+  "policy": {
+    "rekorUrl": "https://rekor-server-trusted-artifact-signer.apps.ocp4.whatever.out-of-my-head.de"
+  },
+  "ec-version": "v0.5.60",
+  "effective-time": "2024-07-23T09:59:36.78388Z"
+}
