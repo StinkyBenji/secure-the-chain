@@ -18,7 +18,7 @@ spec:
       valueFiles:
         - $val/kyverno/values.yaml
   - repoURL: "git@github.com:StinkyBenji/secure-the-chain.git"
-    targetRevision: main
+    targetRevision: feat/kyverno
     ref: val
   ignoreDifferences:
   - group: rbac.authorization.k8s.io
